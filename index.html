@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scholarship Finder: see what you qualify for in 30 seconds</title>
+<meta name="description" content="Answer 8 quick questions and see which Indian scholarships you qualify for, why, and when to apply. No sign-up, nothing leaves your browser.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Built for the JioCoder Hackathon 2026</p>
+    <h1>Stop digging through scholarship PDFs.</h1>
+    <p class="lede">Answer 8 quick questions. We show the scholarships you qualify for, exactly why, and the ones you are <em>one step</em> away from. Nothing leaves your browser.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-labelledby="pf">
+    <h2 id="pf">Your profile</h2>
+    <form id="profile" novalidate>
+      <div class="grid">
+        <label>Level of study
+          <select name="level" required>
+            <option value="school">Class 11–12</option>
+            <option value="diploma">Diploma</option>
+            <option value="ug" selected>Undergraduate</option>
+            <option value="pg">Postgraduate</option>
+            <option value="phd">PhD</option>
+          </select>
+        </label>
+        <label>Field
+          <select name="field" required>
+            <option value="tech" selected>Engineering / Technology</option>
+            <option value="medical">Medical / Health</option>
+            <option value="science">Pure sciences</option>
+            <option value="other">Arts / Commerce / Other</option>
+          </select>
+        </label>
+        <label>Gender
+          <select name="gender" required>
+            <option value="female">Female</option>
+            <option value="male" selected>Male</option>
+            <option value="other">Other / prefer not to say</option>
+          </select>
+        </label>
+        <label>Category
+          <select name="category" required>
+            <option value="General" selected>General</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="EWS">EWS</option>
+          </select>
+        </label>
+        <label>Family income (₹ lakh per year)
+          <input name="income" type="number" min="0" max="100" step="0.1" value="3" required>
+        </label>
+        <label>Marks in last exam (%)
+          <input name="marks" type="number" min="0" max="100" step="0.1" value="75" required>
+        </label>
+      </div>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="minority"> I belong to a notified minority (Muslim, Christian, Sikh, Buddhist, Jain, Parsi)</label>
+        <label class="check"><input type="checkbox" name="disability"> I have a disability of 40% or more</label>
+      </div>
+      <p id="error" class="error" role="alert" hidden></p>
+      <button type="submit" class="primary">Find my scholarships</button>
+    </form>
+  </section>
+
+  <section id="results" aria-live="polite" hidden>
+    <div class="summary" id="summary"></div>
+    <h2>You qualify for <span id="n-eligible"></span></h2>
+    <div id="eligible" class="list"></div>
+    <div id="almost-wrap" hidden>
+      <h2>One step away <span id="n-almost" class="muted"></span></h2>
+      <p class="muted">You miss exactly one requirement on these. Worth knowing before you rule them out.</p>
+      <div id="almost" class="list"></div>
+    </div>
+  </section>
+
+  <section id="saved-wrap" class="card" hidden>
+    <h2>Your deadline tracker</h2>
+    <p class="muted">Add the deadline from the official page, then download a calendar reminder (7 days and 1 day before).</p>
+    <div id="saved"></div>
+  </section>
+
+  <aside class="disclaimer">
+    <strong>Please verify before you apply.</strong> Rules are summarised from public information and change every cycle. Always confirm eligibility, amounts and dates on the official link shown on each card. This tool helps you shortlist; it does not guarantee selection.
+  </aside>
+</main>
+
+<footer class="wrap foot">Your answers stay on your device. Saved items use your browser's local storage.</footer>
+
+<script src="data.js"></script>
+<script src="matcher.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
